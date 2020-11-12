@@ -1,0 +1,12 @@
+package blatt02;
+
+public class Konto {
+	public static void main(String[] args) {
+		double guthaben = 0.0;
+        double zins = 2.0;
+        int jahre = 30;
+        for (int i = 1; i <= 30; i++) {
+            System.out.println("test");
+        }
+	}
+}
