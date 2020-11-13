@@ -29,11 +29,15 @@ public class Konto {
 
         int choice = sc.nextInt();
         
-        if (choice != 3) {
+        if (choice < 3 && choice > 0) {
             System.out.println("Bitte geben Sie die Laufzeit (in Jahren) ein: ");
             jahre = sc.nextInt();
+        } else if (choice != 3) {
+            System.err.println("Eine Nummer zwischen 1 und 3 eingeben bitte");
+            sc.close();
+            System.exit(1);
         }
-        
+
         switch (choice) {
             case 1:
                 // TM1 : Jakob
@@ -47,7 +51,7 @@ public class Konto {
                 // TM2 : Benjamin
                 for (int i = 1; i <= jahre; i++) {
                     abgehoben += guthaben * (zins / 100);
-                    guthaben += 1000.0;
+                    guthaben += weihnachtsgeld;
                     System.out.println("Guthaben einschließlich des abgehobenen Betrags nach dem " + i + ". Jahr: " + (guthaben + abgehoben));
                 }
                 break;
@@ -59,20 +63,12 @@ public class Konto {
                 System.out.println("Bitte geben Sie ihr Sparziel ein: ");
                 ziel = sc.nextDouble();
                 
-                while(true) {
+                while(guthaben < ziel) {
                     guthaben += guthaben * (zins / 100) + weihnachtsgeld;
                     year++;
-                    if (guthaben >= ziel)
-                        break;
                 }
 
                 System.out.println("Guthaben nach dem " + year + ". Jahr: " + guthaben);
-                
-                break;
-            default:
-                System.err.println("Eine Nummer zwischen 1 und 3 eingeben bitte");
-                sc.close();
-                System.exit(1);
                 break;
         }
 
