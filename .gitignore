@@ -1,0 +1,3 @@
+./inf1/bin/*
+**/*.class
+.metadata/*
