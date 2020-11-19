@@ -68,5 +68,5 @@ public class LoesungXYRaster extends JFrame {
             g.drawLine(x25, y, x75, y);
         }
 
-   } 
+   }
 }
