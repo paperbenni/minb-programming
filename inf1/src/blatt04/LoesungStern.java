@@ -41,17 +41,25 @@ public class LoesungStern extends JFrame {
    public void meinStern(Graphics g){
        int middlex = this.getWidth() / 2;
        int middley = this.getHeight() / 2;
-       double size = 2;
-       double radius = ( middlex > middley ? middley / 2 : middlex / 2 ) * size;
-       double r;
 
-       g.setColor(Color.RED);
+       double radius = ( middlex > middley ? middley / 2 : middlex / 2 );
+   } 
+
+   public void meineZufallsSterne() {
+       
+   }
+
+   public void zeichneEinenStern(Graphics g, int midX, int midY, int r) {
+       double tmpr;
        boolean altcolor = false;
+
+       tmpr = r * (altcolor ? 0.5 : 1);
+
        for (double i = Math.PI / 24; i < Math.PI; i+= Math.PI / 24) {
            altcolor = !altcolor;
            g.setColor(altcolor ? Color.MAGENTA : Color.BLUE);
-           r = radius * (altcolor ? 0.5 : 1);
-           g.drawLine((int)( middlex + r * Math.cos(i) ), (int)( middley + r * Math.sin(i) ), (int)(middlex - r * Math.cos(i)), (int)(middley - r * Math.sin(i)));
+           g.drawLine((int)( midX + tmpr * Math.cos(i) ), (int)( midY + tmpr * Math.sin(i) ), (int)(midX - tmpr * Math.cos(i)), (int)(midY - r * Math.sin(i)));
        }
-   } 
+
+   }
 }
