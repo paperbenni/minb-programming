@@ -17,6 +17,7 @@ public class LoesungZufallsSterne extends JFrame {
         this.setVisible(true);
     }
 
+    
     /** Main-Methode. Nichts zu ändern hier. */
     public static void main(String[] args){
     	new LoesungZufallsSterne();
@@ -51,6 +52,7 @@ public class LoesungZufallsSterne extends JFrame {
      * Zweite Teilaufgabe: Sterne zufällig platzieren mit zufälligem Radius
      */
     public void paint(Graphics g){
+    	g.clearRect(0, 0, this.getWidth(), this.getHeight());
 
         for (int i = 0; i < 30; i++) {
             double x = Math.random() * this.getWidth();
