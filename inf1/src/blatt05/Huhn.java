@@ -3,7 +3,7 @@ package blatt05;
 public class Huhn {
 
     private String name;
-    private Boolean hungrig = true;
+    private boolean hungrig = true;
     private static int anzahlHuehner = 0;
 
     public Huhn(String name) {

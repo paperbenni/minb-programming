@@ -54,9 +54,8 @@ public class LoesungStern extends JFrame {
        double tmpr;
        boolean altcolor = false;
 
-
        for (double i = Math.PI / 24; i < Math.PI; i+= Math.PI / 24) {
-           tmpr = r * (altcolor ? 0.5 : 1);
+           tmpr = r * (altcolor ? 1 : 0.5);
            altcolor = !altcolor;
            g.setColor(altcolor ? Color.MAGENTA : Color.BLUE);
            g.drawLine((int)( midX + tmpr * Math.cos(i) ), (int)( midY + tmpr * Math.sin(i) ), (int)(midX - tmpr * Math.cos(i)), (int)(midY - tmpr * Math.sin(i)));
