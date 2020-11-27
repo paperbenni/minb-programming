@@ -52,13 +52,24 @@ public class LoesungZufallsSterne extends JFrame {
      * Zweite Teilaufgabe: Sterne zufällig platzieren mit zufälligem Radius
      */
     public void paint(Graphics g){
-    	g.clearRect(0, 0, this.getWidth(), this.getHeight());
+        boolean random = false;
+        if (random) {
+            g.clearRect(0, 0, this.getWidth(), this.getHeight());
 
-        for (int i = 0; i < 30; i++) {
-            double x = Math.random() * this.getWidth();
-            double y = Math.random() * this.getWidth();
-            int r = (int)(Math.random() * (this.getWidth() / 10));
-            zeichneEinenStern(g, (int)x, (int)y, r);
+            for (int i = 0; i < 30; i++) {
+                double x = Math.random() * this.getWidth();
+                double y = Math.random() * this.getWidth();
+                int r = (int)(Math.random() * (this.getWidth() / 10));
+                zeichneEinenStern(g, (int)x, (int)y, r);
+            }
+        } else {
+            int spiralradius = 10;
+            int midx = this.getWidth() / 2;
+            int midy = this.getHeight() / 2;
+            for (double i = Math.PI / 24; i < Math.PI * 6; i+= Math.PI / 12) {
+                spiralradius += 10;
+                zeichneEinenStern(g, midx + (int)(Math.cos(i) * spiralradius), midy + (int)(Math.sin(i) * spiralradius), spiralradius);
+            }
         }
    } 
 
