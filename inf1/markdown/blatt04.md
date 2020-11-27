@@ -18,17 +18,19 @@ Teilen durch 0.
 int i=0; (i < 1) {i=i+1;}
 ```
 
-Fehlendes if.
+Fehlendes if/while
 
 ```java
 unsigned int i=0; while(i < 1)
 {i=i+1;}
 ```
 
-Loop lauft nur ein Mal.
+Loop läuft nur ein Mal.
+Unsigned kann nicht negativ sein.
 
 ```java
 long i=1; while(i > 0) {i=i+1;}
 ```
 
 Infinite loop
+Long als iterator?
