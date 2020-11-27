@@ -4,16 +4,46 @@ package blatt05;
 public class Raumzuordnung {
 	private Raum raum;		// Referenz auf Raum
 	private Person nutzer;	// Referenz auf Nutzer/in
-	// TODO Grund für Zuordnung (z.B. "Büroraum", "Labor") als Zeichenkette ergänzen. 
-	//		Darf nicht NULL sein und muss mindestens aus 3 Zeichen bestehen. 
-	//		Bitte auch passende Zugriffsmethode und zusätzlichen Konstruktor 
-	//		mit Zuordnungsgrund hinzufügen.
+    private String grund;
 	
 	/** Konstruktor */
 	public Raumzuordnung(Raum raum, Person nutzer) {
-		// TODO: prüfen, dass jeweils nicht null
+        this.setRaum(raum);
+        this.setNutzer(nutzer);
 		this.raum = raum; this.nutzer = nutzer;
 	}
+
+    public void setNutzer(Person nutzer) {
+        if (nutzer == null) {
+            System.err.println("Error, bitte auf Nutzername achten");
+        } else {
+            this.nutzer = nutzer;
+        }
+    }
+
+    public void setRaum(Raum raum) {
+        if (raum == null) {
+            System.err.println("Error, bitte auf Raumname achten");
+        } else {
+            this.raum = raum;
+        }
+    }
+
+	public Raumzuordnung(Raum raum, Person nutzer, String zuordnungsgrund) {
+        this(raum, nutzer);
+        this.setGrund(zuordnungsgrund);
+	}
+
+    public String getGrund() {
+        return this.grund;
+    }
+    public void setGrund(String zuordnungsgrund) {
+        if (zuordnungsgrund.length() <= 3) {
+            System.err.println("Raumname muss länger als 3 Zeichen sein");
+        } else {
+            this.grund = zuordnungsgrund;
+        }
+    }
 	
 	public void print() {
 		this.getNutzer().print();
