@@ -48,8 +48,8 @@ public class MySudoku {
       for (int x = 0; x < ROW_SIZE; x++) {
         for (int y = 0; y < ROW_SIZE; y++) {
           value = spielFeld[y][x];
-          System.out.println("checking x: " + x + " y: " + y +
-                             " inhalt: " + value);
+          // System.out.println("checking x: " + x + " y: " + y +
+          //                    " inhalt: " + value);
           if (value != 0)
             continue;
 
@@ -79,14 +79,24 @@ public class MySudoku {
             count++;
           }
 
-          System.out.println("check" + checklist.toString());
+          // System.out.println("check" + checklist.toString());
           if (count == 8) {
-            System.out.println("yeaboiiiiiiiiiii");
+            for (int i = 1; i <= 9; i++) {
+              if (!checklist.get(i)) {
+                System.out.println("this needs number x: " + x + " y: " + y +
+                                   " i: " + i);
+                spielFeld[y][x] = i;
+              }
+            }
           }
-          System.out.println("count" + count);
+          // System.out.println("count" + count);
         }
       }
-      success = true;
+      // success = true;
+    }
+
+    for (int[] feld : spielFeld) {
+      System.out.println("lel" + Arrays.toString(feld));
     }
   }
 }
