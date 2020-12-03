@@ -35,7 +35,6 @@ public class MySudoku {
   public void checkSudoku() {
 
     int value;
-    int counter;
     boolean success = false;
     int blockx, blocky;
 
@@ -49,21 +48,20 @@ public class MySudoku {
       for (int x = 0; x < ROW_SIZE; x++) {
         for (int y = 0; y < ROW_SIZE; y++) {
           value = spielFeld[y][x];
-          System.out.println("hello x: " + x + " y: " + y +
+          System.out.println("checking x: " + x + " y: " + y +
                              " inhalt: " + value);
           if (value != 0)
             continue;
 
           success = false;
-          counter = 0;
-          BitSet checklist = new BitSet(10);
+          BitSet checklist = new BitSet(10000);
           // check row
           for (int check : spielFeld[y]) {
-            checklist.set(check, 1);
+            checklist.set(check, check == 0 ? false : true);
           }
           // check column
           for (int i = 0; i < ROW_SIZE; i++) {
-            checklist.set(spielFeld[i][x], 1);
+            checklist.set(spielFeld[i][x], spielFeld[i][x] == 0 ? false : true);
           }
 
           // check block that checked field is in
@@ -71,12 +69,24 @@ public class MySudoku {
           blocky = y / BLOCK_SIZE * BLOCK_SIZE;
           for (int bx = blockx; bx < blockx + BLOCK_SIZE; bx++) {
             for (int by = blocky; by < blocky + BLOCK_SIZE; by++) {
-                checklist.set(spielFeld[by][bx]);
+              checklist.set(spielFeld[by][bx],
+                            spielFeld[by][bx] == 0 ? false : true);
             }
           }
-        }
+          int count = 0;
+          for (int i = checklist.nextSetBit(0); i >= 0;
+               i = checklist.nextSetBit(i + 1)) {
+            count++;
+          }
 
+          System.out.println("check" + checklist.toString());
+          if (count == 8) {
+            System.out.println("yeaboiiiiiiiiiii");
+          }
+          System.out.println("count" + count);
+        }
       }
+      success = true;
     }
   }
 }
