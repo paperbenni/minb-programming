@@ -115,7 +115,7 @@ public class SudokuChecker{
 	 * @return true, falls Wert in Ordnung
 	 */
 	private boolean isValueOk(int wert) {
-		return true; // TODO
+		return (wert > 0 && wert <= ROW_SIZE);
 	}
 	
 	
@@ -127,7 +127,10 @@ public class SudokuChecker{
 	 * @return true, falls Wert noch nicht vorhanden.
 	 */
 	private boolean isZeileOk(int zeile, int wert) {
-		// TODO		
+        for (int i : this.spielFeld[zeile]) {
+            if (i == wert)
+                return false;
+        }
 		return true;
 	}
 
@@ -140,7 +143,10 @@ public class SudokuChecker{
 	 * @return true, falls Wert noch nicht vorhanden.
 	 */
 	private boolean isSpalteOk(int spalte, int wert) {
-		// TODO
+        for (int[] i : this.spielFeld) {
+            if (i[spalte] == wert)
+                return false;
+        }
 		return true;
 	}
 	
@@ -153,7 +159,15 @@ public class SudokuChecker{
 	 * @return true, falls Wert noch nicht vorhanden.
 	 */
 	private boolean isBlockOk(int zeile, int spalte, int wert) {
-		// TODO
+        int blockx, blocky;
+          blockx = spalte / BLOCK_SIZE * BLOCK_SIZE;
+          blocky = zeile / BLOCK_SIZE * BLOCK_SIZE;
+      for (int bx = blockx; bx < blockx + BLOCK_SIZE; bx++) {
+        for (int by = blocky; by < blocky + BLOCK_SIZE; by++) {
+            if (this.spielFeld[by][bx] == wert)
+                return false;
+        }
+      }
 		return true;
 	}
 	
