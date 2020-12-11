@@ -107,6 +107,7 @@ public class SudokuChecker{
 	}
 	
 	
+    // Albin
 	/**
 	 * Pruefen, ob ein gegebener Wert im erlaubten Bereich 
 	 * 1 ... ROW_SIZE ist.
@@ -134,7 +135,7 @@ public class SudokuChecker{
 		return true;
 	}
 
-	
+    // Jakob	
 	/**
 	 * Pruefen, ob ein gegebener Wert in einer Spalte erlaubt ist.
 	 * 
@@ -150,6 +151,8 @@ public class SudokuChecker{
 		return true;
 	}
 	
+
+    // Benjamin
 	/**
 	 * Pruefen, ob ein gegebener Wert in einem Block erlaubt ist.
 	 * 
