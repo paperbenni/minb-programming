@@ -165,6 +165,7 @@ public class SudokuChecker{
         int blockx, blocky;
           blockx = spalte / BLOCK_SIZE * BLOCK_SIZE;
           blocky = zeile / BLOCK_SIZE * BLOCK_SIZE;
+
       for (int bx = blockx; bx < blockx + BLOCK_SIZE; bx++) {
         for (int by = blocky; by < blocky + BLOCK_SIZE; by++) {
             if (this.spielFeld[by][bx] == wert)
