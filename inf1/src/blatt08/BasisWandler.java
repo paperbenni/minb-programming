@@ -47,11 +47,10 @@ public class BasisWandler {
      */
     String inBasisKwandeln(long n, int k) {
         String ret = "";
-        if (n <= 0L) { // Rekursionsbasis
+        if (n < 1L) { // Rekursionsbasis
             return "";
         } else {
-            ret += inBasisKwandeln(n / k, k);
-            ret += intNachZiffer((int) (n % k));
+            ret += inBasisKwandeln(n / k, k) + intNachZiffer((int) (n % k));
         }
         return ret;
     }
