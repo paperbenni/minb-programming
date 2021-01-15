@@ -7,27 +7,27 @@ public class MethodenUebung {
     }
 
     public int getFloor(float number) {
-        return (int)Math.floor(number);
+        return (int) Math.floor(number);
     }
 
     public int getCeil(float number) {
-        return (int)Math.ceil(number);
+        return (int) Math.ceil(number);
     }
 
     public boolean isTeilbar(int x, int y) {
         return x % y == 0;
     }
-    
+
     public double getDistance(double[] p1, double[] p2) {
-        return Math.sqrt(Math.pow((p1[0] - p2[0]), 2));
+        return Math.sqrt(Math.pow((p1[0] - p2[0]), 2) + Math.pow((p1[1] - p2[1]), 2));
     }
 
     public int maxNumber(int x, int y, int z) {
         return Math.max(x, Math.max(y, z));
     }
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-	}
+    }
 
 }

@@ -141,7 +141,6 @@ public class SimplifyOrTransform {
                 break;
             default:
                 seite = "Ungültig"; 
-                break;
         }
 
 

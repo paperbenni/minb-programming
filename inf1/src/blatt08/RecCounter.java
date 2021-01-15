@@ -2,6 +2,7 @@ package blatt08;
 
 public class RecCounter {
 
+    // A 8.5
     public static void prt1234(long n) {
         if (n != 0) {
             prt1234(n - 1);
@@ -9,13 +10,16 @@ public class RecCounter {
         }
     }
 
+    // A 8.6
     // Tiefe = sqrt(n*n)
     public static void prtSqr1234(long n) {
         if (n != 0) {
             prtSqr1234(n - 1);
-            System.out.printf("%d, ", n*n);
+            System.out.printf("%d, ", n * n);
         }
     }
+
+    // A 8.7
     public static void prt2468(long n) {
         if ((n % 2) == 1)
             n -= 1;
@@ -25,7 +29,7 @@ public class RecCounter {
         }
     }
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
         long n = Long.parseLong(args[0]);
         System.out.println("1234:");
         prt1234(n);
@@ -33,6 +37,6 @@ public class RecCounter {
         prtSqr1234(n);
         System.out.println("\n2468:");
         prt2468(n);
-	}
+    }
 
 }
