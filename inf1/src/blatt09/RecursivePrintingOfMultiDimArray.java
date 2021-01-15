@@ -1,6 +1,8 @@
 
 package blatt09;
 
+// A 9.2
+
 public class RecursivePrintingOfMultiDimArray {
     static String[][][] eBau = { { // UG
             { // Süd
@@ -38,24 +40,56 @@ public class RecursivePrintingOfMultiDimArray {
      * @param indent Wie viel soll bei der Ausgabe eingerückt werden. Entspricht der
      *               Rekursionstiefe.
      */
-    static void printInXml(Object[] objs, String indent) {
-        // TODO
+    static void printInXml(Object[] objs, String indent, int depth) {
+        String offset = indent.repeat(depth * 4);
+        for (Object obj : objs) {
+            if (obj.getClass().isArray()) {
+                System.out.println(offset + "<container>");
+                printInXml((Object[]) obj, indent, depth + 1);
+                System.out.println(offset + "</container>");
+            } else {
+                System.out.println(offset + "<string>" + obj.toString().trim() + "</string>");
+            }
+        }
     }
 
     public static void main(String[] args) {
         printRecursively(simple); // Gegebene Variante
-        printInXml(eBau, ""); // Zu programmierende Variante
-        /*
-         * Erwartete Ausgabe: <container> <container> <string>EU01</string>
-         * <string>EU02</string> <string>EU03</string> <string>EU04</string>
-         * </container> <container> <string>WC</string> <string>Putzraum</string>
-         * <string>Dusche</string> </container> <container> <string>EU11</string>
-         * <string>EU12</string> <string>EU13</string> <string>EU14</string>
-         * </container> </container> <container> <container> <string>E001</string>
-         * <string>E002</string> <string>E003</string> <string>E004</string>
-         * </container> <container> <string>E011</string> <string>E012</string>
-         * <string>E014</string> </container> </container>
-         */
+        printInXml(eBau, " ", 0); // Zu programmierende Variante
 
+        /* Erwartete Ausgabe:
+		<container>
+		  <container>
+		    <string>EU01</string>
+		    <string>EU02</string>
+		    <string>EU03</string>
+		    <string>EU04</string>
+		  </container>
+		  <container>
+		    <string>WC</string>
+		    <string>Putzraum</string>
+		    <string>Dusche</string>
+		  </container>
+		  <container>
+		    <string>EU11</string>
+		    <string>EU12</string>
+		    <string>EU13</string>
+		    <string>EU14</string>
+		  </container>
+		</container>
+		<container>
+		  <container>
+		    <string>E001</string>
+		    <string>E002</string>
+		    <string>E003</string>
+		    <string>E004</string>
+		  </container>
+		  <container>
+		    <string>E011</string>
+		    <string>E012</string>
+		    <string>E014</string>
+		  </container>
+		</container>
+	 */
     }
 }
