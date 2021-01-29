@@ -3,15 +3,30 @@ package blatt10;
 public class SysDirectory extends SysObjectBase {
 	private SysObjectBase[] sysObjects;
 
+	/**
+	 * 
+	 * Konstruktor
+	 * 
+	 * @param name Name des Verzeichnisses
+	 * @param sysObjects Inhalt
+	 */
 	public SysDirectory(String name, SysObjectBase... sysObjects) {
 		super(name);
 		this.setObjects(sysObjects);
 	}
 	
+	/**
+	 * 
+	 * @return Inhalt des Verzeichnisses
+	 */
 	public SysObjectBase[] getObjects() {
 		return this.sysObjects;
 	}
 	
+	/**
+	 * Inhalt verandern
+	 * @param objects neuer Inhalt
+	 */
 	public void setObjects(SysObjectBase[] objects) {
 		this.sysObjects = objects;
 	}
@@ -22,6 +37,12 @@ public class SysDirectory extends SysObjectBase {
 		return String.format("%s, NumberOfObjects=%i", super.toString(), this.sysObjects.length);
 	}
 
+	/**
+	 * Filetree ausgeben
+	 * @param indent Tiefenmarkierung
+	 * @param depth
+	 * @return
+	 */
 	public String dirStructure(String indent, int depth) {
 		// default indent
 		if (indent.equals("")) {
@@ -37,6 +58,10 @@ public class SysDirectory extends SysObjectBase {
 		return ret;
 	}
 
+	/**
+	 * Test methode
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		SysTextFile hello = new SysTextFile("Hello", "java");
 		hello.setText("public class HelloWorld{/*...*/}");
