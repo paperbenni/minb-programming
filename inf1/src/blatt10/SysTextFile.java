@@ -25,6 +25,9 @@ public class SysTextFile extends SysObjectBase {
 	 * @return
 	 */
 	public String getText() {
+		if (this.text == null) {
+			return "";
+		}
 		return this.text;
 	}
 
@@ -43,7 +46,8 @@ public class SysTextFile extends SysObjectBase {
 
 	@Override
 	public String toString() {
-		return String.format("%s, Type=%s, Length=%i: %s", super.toString(), this.type, this.text.length(), this.text);
+		return String.format("%s, Type=%s, Length=%d: %s",
+				super.toString(), this.getType(), this.getText().length(), this.getText());
 	}
 
 	public static void main(String[] args) {

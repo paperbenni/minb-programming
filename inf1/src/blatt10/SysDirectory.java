@@ -34,7 +34,7 @@ public class SysDirectory extends SysObjectBase {
 	
 	@Override
 	public String toString() {
-		return String.format("%s, NumberOfObjects=%i", super.toString(), this.sysObjects.length);
+		return String.format("%s, NumberOfObjects=%d", super.toString(), this.sysObjects.length);
 	}
 
 	/**
@@ -51,8 +51,10 @@ public class SysDirectory extends SysObjectBase {
 		String ret;
 		ret = String.format("\n%s%s", indent.repeat(depth), this.toString());
 		for (SysObjectBase object : this.sysObjects) {
-			if (object instanceof SysDirectory) {
-				ret = ret + dirStructure(indent, depth + 1);
+			if (object.getClass() == this.getClass()) {
+				ret = ret + ((SysDirectory)object).dirStructure(indent, (depth + 1));
+			} else {
+				ret = ret + String.format("\n%s%s", indent.repeat(depth + 1), object.toString());
 			}
 		}
 		return ret;

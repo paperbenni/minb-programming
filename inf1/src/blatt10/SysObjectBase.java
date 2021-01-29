@@ -44,6 +44,6 @@ public abstract class SysObjectBase {
 	 */
 	@Override
 	public String toString() {
-		return String.format("Class=%s, Name=%s, User=%s", this.getClass(), this.name, this.owner);
+		return String.format("Class=%s, Name=%s, User=%s", this.getClass().getCanonicalName(), this.name, this.owner);
 	}
 }
