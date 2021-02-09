@@ -1,6 +1,7 @@
 package blatt10;
 
 public abstract class SysObjectBase {
+
 	private String name;
 	private String owner;
 	
@@ -13,6 +14,10 @@ public abstract class SysObjectBase {
 	}
 	
 	
+	/**
+	 * 
+	 * @return name
+	 */
 	public String getName() {
 		return this.name;
 	}
@@ -44,6 +49,6 @@ public abstract class SysObjectBase {
 	 */
 	@Override
 	public String toString() {
-		return String.format("Class=%s, Name=%s, User=%s", this.getClass().getCanonicalName(), this.name, this.owner);
+		return String.format("Class=%s, Name=%s, User=%s", this.getClass().getCanonicalName(), this.getName(), this.getOwner());
 	}
 }
