@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <string.h>
 
 // Aufgabe 1
 // laengstes suffix ohne 2 :
@@ -12,14 +11,10 @@ int main(int argc, char *argv[])
     int i;
     int position;
     if (argc >= 2) {
-        if (!strcmp(argv[1], "--help")) {
-            printf("usage: doublecolonsuffix string\n");
-            return 0;
-        }
         targetstring = argv[1];
     } else {
         printf("enter string (please)> ");
-        scanf("%s", userinput);
+        fgets(userinput, sizeof(userinput), stdin);
         targetstring = userinput;
     }
 
