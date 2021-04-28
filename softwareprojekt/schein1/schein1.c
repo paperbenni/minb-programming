@@ -1,12 +1,20 @@
+/*
+ * Aufgabe 1.c
+ *
+ *  Created on: 26.04.2021
+ */
+
 #include <stdio.h>
 
+#define TEST_CASES_COUNT 9 // Anzahl der Tests
+
+typedef struct {
+  char *input;
+  char *expected;
+} TestCase;
+
 // Aufgabe 1
-// laengstes suffix ohne 2 :
-
-char *targetstring;
-char userinput[100];
-
-typedef enum { OK, FAIL } Test;
+// laengstes suffix ohne ::
 
 // extract nach beispielen
 char *extract(char *input) {
@@ -20,6 +28,10 @@ char *extract(char *input) {
   }
   return input + position;
 }
+
+void extract2(char *input, char **output) { *output = extract(input); }
+
+typedef enum { OK, FAIL } Test;
 
 int stringcompare(char *a, char *b) {
   int i;
@@ -45,11 +57,6 @@ Test testColonparser(char *input, char *expected) {
   return t;
 }
 
-typedef struct {
-  char *input;
-  char *expected;
-} TestCase;
-
 void runTests(int no, TestCase test[]) {
   Test t;
   int i;
@@ -58,15 +65,16 @@ void runTests(int no, TestCase test[]) {
     printf("Test %d: ", i);
     t = testColonparser(test[i].input, test[i].expected);
     if (OK == t)
-      printf("OK \n");
+      printf("OK   input:    %-30s function output: %s\n", test[i].input,
+             test[i].expected);
     if (FAIL == t)
-      printf("FAIL \n");
+      printf("FAIL expected: %-30s function output %s \n", test[i].expected,
+             extract(test[i].input));
   }
 }
 
 int main(int argc, char *argv[]) {
-  const int testNo = 8;
-  TestCase tests[8] = {
+  TestCase tests[TEST_CASES_COUNT] = {
       {"aaaa::bbb", "bbb"},
       {"aaaa::bbb::g", "g"},
       {"hello::world:", "world:"},
@@ -74,9 +82,9 @@ int main(int argc, char *argv[]) {
       {"hello_world::", ""},
       {"aaaaaaa::aaaaaaaaaaa::aaaaaa", "aaaaaa"},
       {"this:is:a::test", "test"},
-      {"I::don't think there are a lot more ::special cases to cover",
-       "special cases to cover"},
+      {"this:: tests :: s p a c e s", " s p a c e s"},
+      {"no double colon here", "no double colon here"},
   };
 
-  runTests(testNo, tests);
+  runTests(TEST_CASES_COUNT, tests);
 }
