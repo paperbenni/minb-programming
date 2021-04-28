@@ -19,7 +19,7 @@ typedef struct {
 // extract nach beispielen
 char *extract(char *input) {
   int i;
-  int position;
+  int position = 0;
 
   for (i = 0; input[i] != '\0'; ++i) {
     if (*(input + i) == ':' && *(input + i + 1) == ':') {
@@ -57,9 +57,22 @@ Test testColonparser(char *input, char *expected) {
   return t;
 }
 
+
+Test testColonparser2(char *input, char *expected) {
+  Test t;
+
+  extract2(input, &input);
+  if (stringcompare(input, expected) == 0)
+    t = OK;
+  else
+    t = FAIL;
+  return t;
+}
+
 void runTests(int no, TestCase test[]) {
   Test t;
   int i;
+  printf("testing extract1\n\n");
 
   for (i = 0; i < no; i++) {
     printf("Test %d: ", i);
@@ -68,10 +81,29 @@ void runTests(int no, TestCase test[]) {
       printf("OK   input:    %-30s function output: %s\n", test[i].input,
              test[i].expected);
     if (FAIL == t)
-      printf("FAIL expected: %-30s function output %s \n", test[i].expected,
+      printf("FAIL expected: %-30s function output: %s \n", test[i].expected,
              extract(test[i].input));
   }
 }
+
+void runTests2(int no, TestCase test[]) {
+  Test t;
+  int i;
+  printf("\n\ntesting extract2\n\n");
+
+  for (i = 0; i < no; i++) {
+    printf("Test %d: ", i);
+    t = testColonparser2(test[i].input, test[i].expected);
+    if (OK == t)
+      printf("OK   input:    %-30s function output: %s\n", test[i].input,
+             test[i].expected);
+    if (FAIL == t)
+      printf("FAIL expected: %-30s function output: %s \n", test[i].expected,
+             extract(test[i].input));
+  }
+}
+
+
 
 int main(int argc, char *argv[]) {
   TestCase tests[TEST_CASES_COUNT] = {
@@ -87,4 +119,5 @@ int main(int argc, char *argv[]) {
   };
 
   runTests(TEST_CASES_COUNT, tests);
+  runTests2(TEST_CASES_COUNT, tests);
 }
