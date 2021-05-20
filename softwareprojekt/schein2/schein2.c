@@ -18,10 +18,12 @@ char *reverse(char *s) {
   int i;
   int len = length(s);
   char tmp;
-  char *out = malloc(len * (sizeof(char) + 1));
+  char *out = malloc((len + 1) * sizeof(char));
+
   for (i = 0; i < len; ++i) {
-    out[i] = s[len - i - 1];
+        out[i] = s[len - i - 1];
   }
+  out[len] = '\0';
   return out;
 }
 
