@@ -21,9 +21,24 @@ String::String(char c) {
 
 // copy
 // literal init
+
 String::String(const char *s) {
+    int i = 0;
+    int length = 0;
     size = 0;
-  // TODO
+    while (s[i] != '\0') {
+        i++;
+    }
+
+    size = i;
+    i = 0;
+
+    str = new char[size];
+
+    while (s[i] != '\0') {
+        str[i] = s[i];
+        i++;
+    }
 }
 
 // move

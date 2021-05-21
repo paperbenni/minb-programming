@@ -1,4 +1,4 @@
-all: build
+all: schein3
 
 schein3: main.cpp String.cpp
 	g++ -o schein3 -g String.cpp main.cpp 
