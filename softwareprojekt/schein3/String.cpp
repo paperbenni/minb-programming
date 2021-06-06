@@ -39,24 +39,30 @@ String::String(const char *s) {
   size = i;
   i = 0;
 
-  str = new char[size];
+  str = new char[size + 1];
 
   while (s[i] != '\0') {
     str[i] = s[i];
     i++;
   }
+
+  this->str[this->size] = '\0';
 }
 
-// copy
-// done
 String::String(const String &s) {
+  if (this == &s)
+        return;
+  delete[] this->str;
   this->size = s.size;
-  this->str = new char[s.size];
+  this->str = new char[s.size + 1];
   copy(s.str, s.size, this->str);
+  this->str[this->size] = '\0';
 }
 
-// move
 String::String(String &&s) {
+  if (this == &s)
+        return;
+  delete[] this->str;
   this->size = s.size;
   /* delete[] this->str; */
   this->str = s.str;
@@ -70,19 +76,24 @@ char &String::operator[](int index) { return this->str[index]; }
 
 // copy
 String &String::operator=(const String &s) {
+  if (this == &s)
+        return *this;
   this->size = s.size;
-  this->str = new char[s.size];
+  delete[] this->str;
+  this->str = new char[s.size + 1];
   copy(s.str, s.size, this->str);
+  this->str[this->size] = '\0';
   return *this;
 }
 
-// move
 String &String::operator=(String &&s) {
-    if (this->size > 0)
-      delete[] this->str;
+  if (this == &s)
+        return *this;
   this->size = s.size;
-  this->str = s.str;
-  s.str = nullptr;
+  delete[] this->str;
+  this->str = new char[s.size + 1];
+  copy(s.str, s.size, this->str);
+  this->str[this->size] = '\0';
   return *this;
 }
 
@@ -90,7 +101,7 @@ String &String::operator=(String &&s) {
 // done
 String &String::operator+=(String &s) {
   int newsize = s.size + this->size;
-  char *tmp = new char[newsize];
+  char *tmp = new char[newsize + 1];
   int i;
 
   i = 0;
