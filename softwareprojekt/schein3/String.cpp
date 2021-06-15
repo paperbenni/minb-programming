@@ -50,9 +50,6 @@ String::String(const char *s) {
 }
 
 String::String(const String &s) {
-  if (this == &s)
-        return;
-  delete[] this->str;
   this->size = s.size;
   this->str = new char[s.size + 1];
   copy(s.str, s.size, this->str);
@@ -60,13 +57,10 @@ String::String(const String &s) {
 }
 
 String::String(String &&s) {
-  if (this == &s)
-        return;
-  delete[] this->str;
   this->size = s.size;
-  /* delete[] this->str; */
   this->str = s.str;
   s.str = nullptr;
+  s.size = 0;
 }
 
 // destructor
@@ -87,13 +81,12 @@ String &String::operator=(const String &s) {
 }
 
 String &String::operator=(String &&s) {
-  if (this == &s)
-        return *this;
+    if (this->size > 0)
+      delete[] this->str;
   this->size = s.size;
-  delete[] this->str;
-  this->str = new char[s.size + 1];
-  copy(s.str, s.size, this->str);
-  this->str[this->size] = '\0';
+  this->str = s.str;
+  s.str = nullptr;
+  s.size = 0;
   return *this;
 }
 
@@ -115,6 +108,7 @@ String &String::operator+=(String &s) {
   }
 
   this->size = newsize;
+  this->str[this->size] = '\0';
   delete[] this->str;
   this->str = tmp;
   return *this;
