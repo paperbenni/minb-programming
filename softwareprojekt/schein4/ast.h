@@ -10,16 +10,24 @@
 
 using namespace std; 
 
+enum ExpType { Plus, Mult , Int};
+
 class Exp {
-public:
-  virtual int eval() = 0;
-  virtual string pretty() = 0;
+
+    public:
+      ExpType t;  
+      virtual int eval() = 0;
+      virtual string pretty() = 0;
+      ExpType getType() {
+          return t;
+      }
+
 };
 
 class IntExp : public Exp {
   int val;
   public:
-  IntExp(int _val) { val = _val; }
+  IntExp(int _val) { val = _val; t = Int;}
   int eval();
   string pretty();
 };
@@ -27,9 +35,11 @@ class IntExp : public Exp {
 class PlusExp : public Exp {
   std::shared_ptr<Exp> e1;
   std::shared_ptr<Exp> e2;
+  bool klammered = false;
   public:
   PlusExp(std::shared_ptr<Exp> _e1, std::shared_ptr<Exp> _e2) {
       e1 = _e1; e2 = _e2;
+      t = Plus;
   }
   int eval();
   string pretty();
@@ -42,6 +52,7 @@ class MultExp : public Exp {
   public:
   MultExp(std::shared_ptr <Exp> _e1, std::shared_ptr<Exp> _e2) {
       e1 = _e1; e2 = _e2;
+      t = Mult;
   }
   int eval();
   string pretty();
