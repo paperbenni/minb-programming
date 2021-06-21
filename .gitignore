@@ -6,3 +6,5 @@ tags
 /.metadata/
 **/a.out
 **/schein3/schein3
+/**/*.o
+/**/testParser
