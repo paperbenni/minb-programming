@@ -10,9 +10,9 @@ using namespace std;
 string showTok(Token_t t) {
   switch(t) {
   case EOS:   return "EOS";
-  case ZERO:  return "ZERO";    
+  case ZERO:  return "ZERO";
   case ONE:   return "ONE";
-  case TWO:   return "TWO";      
+  case TWO:   return "TWO";
   case OPEN:  return "OPEN";
   case CLOSE: return "CLOSE";
   case PLUS:  return "PLUS";
@@ -20,6 +20,7 @@ string showTok(Token_t t) {
   }
   // NOTE: The (clang) compiler is able to figure out that
   // along all control-flow paths, a return statement will be reached.
+    return "";
 }
 
 Token_t Tokenize::next() {
@@ -30,10 +31,10 @@ Token_t Tokenize::next() {
 
        if(s.length() <= pos)
          return EOS;
-      
+
        switch(s[pos]) {
        case '0': pos++;
-                 return ZERO;        
+                 return ZERO;
        case '1': pos++;
                  return ONE;
        case '2': pos++;
@@ -45,7 +46,7 @@ Token_t Tokenize::next() {
        case '+': pos++;
                  return PLUS;
        case '*': pos++;
-                 return MULT;         
+                 return MULT;
        default:  // we simply skip all other symbols !
                  pos++;
              break;
@@ -72,7 +73,7 @@ string Tokenize::show() {
     vector<Token_t> v = this->scan();
     string s;
 
-    for(int i=0; i < v.size(); i++) {
+    for(unsigned int i=0; i < v.size(); i++) {
       s += showTok(v[i]);
       if(i+1 < v.size())
     s += ";" ;         // Add delimiter

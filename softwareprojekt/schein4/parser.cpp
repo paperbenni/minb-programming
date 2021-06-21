@@ -1,5 +1,3 @@
-
-
 #include "utility.h"
 #include "ast.h"
 #include "tokenizer.h"
