@@ -18,6 +18,7 @@ class Exp {
       ExpType t;  
       virtual int eval() = 0;
       virtual string pretty() = 0;
+      virtual string smartpretty() = 0;
       ExpType getType() {
           return t;
       }
@@ -30,6 +31,7 @@ class IntExp : public Exp {
   IntExp(int _val) { val = _val; t = Int;}
   int eval();
   string pretty();
+  string smartpretty();
 };
 
 class PlusExp : public Exp {
@@ -43,6 +45,7 @@ class PlusExp : public Exp {
   }
   int eval();
   string pretty();
+  string smartpretty();
 };
 
 
@@ -56,6 +59,7 @@ class MultExp : public Exp {
   }
   int eval();
   string pretty();
+  string smartpretty();
 };
 
 // Short-hands

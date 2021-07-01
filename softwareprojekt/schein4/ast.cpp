@@ -41,6 +41,10 @@ string IntExp::pretty() {
       return to_string(val);
 }
 
+string IntExp::smartpretty() {
+      return to_string(val);
+}
+
 /*
 Methode  : eval
 Klasse : IntExp
@@ -72,14 +76,24 @@ Parameter:
 Rückgabe:  
 	ein Stringobjekt mit der Textrepresentation dieses Knotens sowie allen diesem Knoten zugewisenen Tochterknoten.
 */
+
 string PlusExp::pretty() {
-    string s("");				// "klammer öffnen" anhängen	
+    string s("(");				// "klammer öffnen" anhängen	
     s.append(e1->pretty());		// linken Knotten ausführen und das Ergebnis anhängen
     s.append("+");				// Pluszeichen anhängen
     s.append(e2->pretty());		// rechten Knotten ausführen und das Ergebnis anhängen
+    s.append(")");    			// "klammer zu" anhängen	
     return s;
 }
 
+
+string PlusExp::smartpretty() {
+    string s("");				// "klammer öffnen" anhängen	
+    s.append(e1->smartpretty());		// linken Knotten ausführen und das Ergebnis anhängen
+    s.append("+");				// Pluszeichen anhängen
+    s.append(e2->smartpretty());		// rechten Knotten ausführen und das Ergebnis anhängen
+    return s;
+}
 
 /*
 Methode  : eval
@@ -111,22 +125,32 @@ Parameter:
 Rückgabe:  
 	ein Stringobjekt mit der Textrepresentation dieses Knotens sowie allen diesem Knoten zugewisenen Tochterknoten.
 */
+
 string MultExp::pretty() {
+    string s("(");				// "klammer öffnen" anhängen	
+    s.append(e1->pretty()); 	// linken Knotten durchwandern und das Ergebnis anhängen
+    s.append("*");				// multiplikationszeichen anhängen
+    s.append(e2->pretty());		// rechten Knotten ausführen und das Ergebnis anhängen
+    s.append(")");    			// "klammer zu" anhängen	
+    return s;
+  }
+
+string MultExp::smartpretty() {
     string s("");				// "klammer öffnen" anhängen	
     if (e1->getType() == Plus) {
         s.append("(");
-        s.append(e1->pretty()); 	// linken Knotten durchwandern und das Ergebnis anhängen
+        s.append(e1->smartpretty()); 	// linken Knotten durchwandern und das Ergebnis anhängen
         s.append(")");
     } else {
-        s.append(e1->pretty()); 	// linken Knotten durchwandern und das Ergebnis anhängen
+        s.append(e1->smartpretty()); 	// linken Knotten durchwandern und das Ergebnis anhängen
     }
     s.append("*");				// multiplikationszeichen anhängen
     if (e2->getType() == Plus) {
         s.append("(");
-        s.append(e2->pretty()); 	// linken Knotten durchwandern und das Ergebnis anhängen
+        s.append(e2->smartpretty()); 	// linken Knotten durchwandern und das Ergebnis anhängen
         s.append(")");
     } else {
-        s.append(e2->pretty()); 	// linken Knotten durchwandern und das Ergebnis anhängen
+        s.append(e2->smartpretty()); 	// linken Knotten durchwandern und das Ergebnis anhängen
     }
     return s;
   }
