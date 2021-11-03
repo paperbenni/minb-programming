@@ -15,6 +15,6 @@ machen.
 ## 3.4
 
 Android nutzt zur ausführung nicht die JVM sondern in älteren Versionen die
-Dalvik VM und seit version 5 die Android runtime. Die ART ist nicht stack
+Dalvik VM und seit Version 5 die Android runtime. Die ART ist nicht stack
 basiert und soll speichereffizienter funktionieren.  Ausserdem hat Android ein
 eigenes SDK und eine andere standard library als Oracle Java oder OpenJDK.

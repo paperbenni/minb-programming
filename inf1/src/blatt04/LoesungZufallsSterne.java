@@ -43,7 +43,11 @@ public class LoesungZufallsSterne extends JFrame {
             tmpr = r * (altcolor ? 1.1 : 1);
             altcolor = !altcolor;
             g.setColor(altcolor ? Color.MAGENTA : Color.BLUE);
-            g.drawLine((int)( midX + tmpr * Math.cos(i) ), (int)( midY + tmpr * Math.sin(i) ), (int)(midX - tmpr * Math.cos(i)), (int)(midY - tmpr * Math.sin(i)));
+
+            int tmpx = (int) (tmpr * Math.cos(i));
+            int tmpy = (int) (tmpr * Math.sin(i));
+
+            g.drawLine((int)( midX + tmpx ), (int)( midY + tmpy ), (int)(midX - tmpx), (int)(midY - tmpy));
         }
     }
     
@@ -51,6 +55,7 @@ public class LoesungZufallsSterne extends JFrame {
      * Zweite Teilaufgabe: Sterne zufällig platzieren mit zufälligem Radius
      */
     public void paint(Graphics g){
+        // spirale oder geschenkpapier
         final boolean random = false;
         if (random) {
             g.clearRect(0, 0, this.getWidth(), this.getHeight());

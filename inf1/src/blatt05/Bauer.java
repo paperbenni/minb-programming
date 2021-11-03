@@ -10,10 +10,10 @@ public class Bauer {
     }
     
     public void fuettern(Huhn huhn) {
-        if (huhn.getHungrig())
+        if (!huhn.getHungrig())
             return;
         anzahlGefuetterterHuehner++;
-        huhn.setHungrig(true);
+        huhn.setHungrig(false);
     }
 
     public void rufeHuhn(Huhn huhn) {

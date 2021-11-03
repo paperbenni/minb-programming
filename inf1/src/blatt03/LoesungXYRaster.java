@@ -42,13 +42,17 @@ public class LoesungXYRaster extends JFrame {
 	 */
    public void meinRaster(Graphics g){
         Boolean greyline = false;
-        int x25 = this.getWidth() / 4;
-        int x75 = this.getWidth() * 3 / 4;
-        int y25 = this.getHeight() / 4;
-        int y75 = this.getHeight() * 3 / 4;
+
+        int width = this.getWidth();
+        int height = this.getHeight();
+
+        int x25 = width / 4;
+        int x75 = width * 3 / 4;
+        int y25 = height / 4;
+        int y75 = height * 3 / 4;
 
         int x, y;
-        float step = this.getWidth() / (2*10.f);
+        float step = width / (2*10.f);
 
         for (int counter = 0; counter <= 10; counter++) {
             greyline = !greyline;
@@ -57,7 +61,7 @@ public class LoesungXYRaster extends JFrame {
             g.drawLine(x, y25, x, y75);
         }
 
-        step = this.getHeight() / (2*10.f);
+        step = height / (2*10.f);
 
         greyline = false;
 
